@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration>
+    <property name="LOG_PATH" value="/var/log/xx"/>
+    <!-- <property name="LOG_PATH" value="c:/log" /> -->
+
+    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-5p [%d] %C:%L - %m %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-5p [%d] %C:%L - %m %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/debug-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-5p [%d] %C:%L - %m %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/warn-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-5p [%d] %C:%L - %m %n</pattern>
+        </encoder>
+    </appender>
+
+    <!--CONSOLE Level -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <Target>System.out</Target>
+        <encoder>
+            <pattern>%-5p [%d] %C:%L - %m %n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+
+    <root level="error">
+        <appender-ref ref="console"/>
+    </root>
+
+
+    <logger name="org.apache" level="error">
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="com.ueedit" level="info">
+    </logger>
+
+    <logger name="org.springframework.jdbc.core.JdbcTemplate" level="error">
+        <appender-ref ref="console"/>
+    </logger>
+
+    <logger name="info" level="info">
+        <appender-ref ref="INFO"/>
+    </logger>
+    <logger name="error" level="info">
+        <appender-ref ref="ERROR"/>
+    </logger>
+    <logger name="debug" level="info">
+        <appender-ref ref="DEBUG"/>
+    </logger>
+    <logger name="warn" level="info">
+        <appender-ref ref="WARN"/>
+    </logger>
+
+</configuration>
